@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EGR Harvest + Beer Festival</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:    #b02020;
+      --red2:   #d42828;
+      --orange: #e85c1a;
+      --gold:   #f5a800;
+      --blue:   #1a4a8a;
+      --blue2:  #2360b0;
+      --cream:  #fdf5e6;
+      --dark:   #1a0a00;
+      --white:  #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Archivo', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+      border-bottom: 4px solid var(--gold);
+    }
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 1rem; color: var(--white); letter-spacing: 0.05em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-logo .egr-chip {
+      background: var(--gold); color: var(--blue);
+      padding: 0.1rem 0.5rem; border-radius: 3px;
+      font-size: 1.1rem; font-weight: 900;
+    }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      padding: 0 0.9rem; height: 60px; display: flex; align-items: center;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); background: rgba(255,255,255,0.05); }
+    .dropdown { position: relative; }
+    .dropdown > a::after { content: ' ▾'; }
+    .dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: var(--blue); min-width: 200px;
+      border-top: 3px solid var(--gold); border-radius: 0 0 6px 6px;
+    }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { height: auto; padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .nav-ticket-btn {
+      background: var(--red) !important; color: var(--white) !important;
+      border-radius: 4px; margin-left: 0.75rem;
+      padding: 0 1.25rem !important; height: 38px !important;
+      font-weight: 900 !important;
+    }
+    .nav-ticket-btn:hover { background: var(--red2) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--blue);
+      min-height: 88vh;
+      position: relative; overflow: hidden;
+      display: flex; align-items: stretch;
+    }
+    .hero-bg-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 22vw; color: rgba(255,255,255,0.03);
+      white-space: nowrap; letter-spacing: -0.02em; line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .hero-left {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; padding: 2.5rem 3rem 5rem 5rem;
+      position: relative; z-index: 2;
+    }
+    .hero-right {
+      width: 400px; flex-shrink: 0; position: relative; z-index: 2;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 2.5rem 2rem 0;
+    }
+    .hero-right img { width: 100%; max-width: 360px; filter: drop-shadow(0 0 40px rgba(245,168,0,0.3)); }
+    .hero-right .mascot-placeholder {
+      width: 300px; height: 460px; margin-bottom: 2rem;
+      background: rgba(255,255,255,0.05); border: 2px dashed rgba(245,168,0,0.3);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      color: rgba(245,168,0,0.5); font-size: 0.85rem; text-align: center; padding: 1rem;
+    }
+
+    .hero-chip {
+      display: inline-block; background: var(--red); color: var(--white);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Archivo Black', sans-serif;
+      color: var(--white); line-height: 0.9;
+      font-size: clamp(4.5rem, 9vw, 8rem);
+    }
+    .hero-title .gold { color: var(--gold); }
+    .hero-plus {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem); color: var(--orange);
+      line-height: 0.85;
+    }
+    .hero-sub {
+      margin-top: 1.5rem; color: rgba(255,255,255,0.6);
+      font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .hero-sub span::before { content: '· '; color: var(--gold); }
+    .hero-sub span:first-child::before { display: none; }
+    .hero-date-block {
+      margin-top: 2rem;
+      background: var(--gold); color: var(--dark);
+      display: inline-block; padding: 1rem 1.5rem;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
+      padding-right: 2.5rem;
+    }
+    .hero-date-block .d1 { font-family: 'Archivo Black', sans-serif; font-size: 1.3rem; }
+    .hero-date-block .d2 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 0.15rem; }
+    .hero-btns { margin-top: 2rem; display: flex; gap: 1rem; }
+    .btn-red {
+      background: var(--red); color: var(--white);
+      padding: 0.9rem 2rem; font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      border: none; cursor: pointer; text-decoration: none;
+      border-radius: 4px; transition: all 0.2s; display: inline-block;
+    }
+    .btn-red:hover { background: var(--red2); transform: translateY(-2px); }
+    .btn-outline-w {
+      border: 2px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 0.9rem 2rem; font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      background: transparent; cursor: pointer; text-decoration: none;
+      border-radius: 4px; transition: all 0.2s; display: inline-block;
+    }
+    .btn-outline-w:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-outline-gold {
+      border: 2px solid var(--gold); color: var(--gold);
+      padding: 0.9rem 2rem; font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      background: transparent; cursor: pointer; text-decoration: none;
+      border-radius: 4px; transition: all 0.2s; display: inline-block;
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: var(--dark); }
+
+    /* ── LIBATIONS BANNER ── */
+    .libations-banner {
+      background: var(--red); color: var(--white);
+      padding: 1.25rem 2rem; text-align: center;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: 0.1em;
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+    }
+    .libations-banner::before, .libations-banner::after { content: '🍺'; font-size: 1.5rem; }
+
+    /* ── COUNTDOWN ── */
+    .countdown { background: var(--dark); padding: 2.5rem 2rem; text-align: center; }
+    .countdown-label { font-family: 'Archivo Black', sans-serif; font-size: 0.9rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .cd-row { display: flex; justify-content: center; gap: 0.5rem; }
+    .cd-box { text-align: center; }
+    .cd-num-wrap {
+      background: var(--red); width: 90px; height: 90px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px;
+    }
+    .cd-num { font-family: 'Archivo Black', sans-serif; font-size: 2.8rem; color: var(--white); }
+    .cd-sep { color: var(--gold); font-family: 'Archivo Black', sans-serif; font-size: 2.5rem; align-self: flex-start; padding-top: 0.6rem; }
+    .cd-lbl { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.5rem; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+    .s-chip {
+      display: inline-block; background: var(--gold); color: var(--dark);
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.25rem 0.75rem; border-radius: 2px; margin-bottom: 1rem;
+    }
+    .s-chip.red { background: var(--red); color: var(--white); }
+    .s-chip.blue { background: var(--blue); color: var(--white); }
+    .section-h {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem); line-height: 0.95;
+      color: var(--dark);
+    }
+    .section-h.white { color: var(--white); }
+    .section-h.gold { color: var(--gold); }
+    .underbar { width: 60px; height: 5px; background: var(--red); margin: 1rem 0 2rem; border-radius: 2px; }
+    .underbar.gold { background: var(--gold); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--cream); }
+    .about-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+    .about-text p { font-size: 1rem; line-height: 1.85; color: #3a2010; margin-bottom: 1rem; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-box {
+      background: var(--blue); padding: 1.5rem; text-align: center; border-radius: 6px;
+    }
+    .stat-box:nth-child(odd) { background: var(--red); }
+    .stat-n { font-family: 'Archivo Black', sans-serif; font-size: 2.2rem; color: var(--white); }
+    .stat-d { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 0.2rem; }
+
+    /* ── BREWERIES ── */
+    #breweries { background: var(--dark); }
+    .brew-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .starburst {
+      width: 150px; height: 150px; flex-shrink: 0; margin-top: 0.5rem;
+      background: var(--gold); color: var(--dark);
+      clip-path: polygon(
+        50% 12%, 56% 29%, 69% 17%, 66% 34%,
+        83% 31%, 71% 44%, 88% 50%, 71% 56%,
+        83% 69%, 66% 66%, 69% 83%, 56% 71%,
+        50% 88%, 44% 71%, 31% 83%, 34% 66%,
+        17% 69%, 29% 56%, 12% 50%, 29% 44%,
+        17% 31%, 34% 34%, 31% 17%, 44% 29%
+      );
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .starburst span {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.04em;
+      text-transform: uppercase; line-height: 1.4;
+    }
+    .brew-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .brew-card {
+      background: var(--white); border-radius: 6px; padding: 1rem;
+      text-align: center; border: 2px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex; align-items: center; justify-content: center; min-height: 80px;
+    }
+    .brew-card:hover { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .brew-icon { display: flex; align-items: center; justify-content: center; width: 100%; }
+    .brew-icon img { max-width: 150px; max-height: 70px; width: 100%; object-fit: contain; }
+    .brew-name { display: none; }
+    .brew-city { display: none; }
+
+    .vendor-logos {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+    }
+    .vendor-logo-box {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px; padding: 0.4rem 0.75rem;
+      font-size: 0.7rem; color: rgba(255,255,255,0.55); font-weight: 600;
+      min-width: 72px; text-align: center;
+    }
+    .lineup-list { margin-top: 1rem; }
+    .lineup-item {
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      padding: 0.35rem 0; border-top: 1px solid rgba(255,255,255,0.1);
+      font-style: italic;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .aerial-wrap {
+      height: 440px; background-size: cover; background-position: center top;
+      position: relative; display: flex; align-items: flex-end;
+    }
+    .aerial-overlay {
+      width: 100%; padding: 3rem 5rem;
+      background: linear-gradient(transparent 0%, rgba(26,10,0,0.72) 100%);
+    }
+    .aerial-text {
+      font-family: 'Archivo Black', sans-serif; color: var(--white);
+      font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.15;
+    }
+    .aerial-text span { color: var(--gold); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .gallery-grid img { width: 100%; height: 300px; object-fit: cover; display: block; transition: opacity 0.2s; }
+    .gallery-grid img:hover { opacity: 0.88; }
+    .gallery-grid img:last-child { object-position: center top; }
+    #about { padding-bottom: 0; }
+
+    /* ── FOOD & ENT ── */
+    #food { background: var(--orange); }
+    .fe-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .fe-card {
+      background: rgba(0,0,0,0.15); border-radius: 8px; padding: 2rem 1.5rem;
+      transition: background 0.2s; overflow: hidden;
+    }
+    .fe-card:hover { background: rgba(0,0,0,0.25); }
+    .fe-photo {
+      width: calc(100% + 3rem); margin: -2rem -1.5rem 1.25rem;
+      height: 190px; object-fit: cover; display: block;
+    }
+    .fe-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .fe-card h3 { font-family: 'Archivo Black', sans-serif; color: var(--white); font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .fe-card p { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+    /* ── TICKETS ── */
+    #tickets { background: var(--cream); }
+    .tickets-coming-soon { text-align: center; padding: 2rem 0 1rem; }
+    .tickets-banner {
+      display: inline-block;
+      font-family: 'Archivo Black', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--white); background: var(--red);
+      padding: 1rem 3.5rem;
+      clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+    }
+    .tickets-sub { margin-top: 1.5rem; color: #7a5c3a; font-size: 0.95rem; }
+    .t-card {
+      border: 3px solid var(--dark); border-radius: 8px; overflow: hidden;
+      transition: transform 0.2s; position: relative;
+    }
+    .t-card:hover { transform: translateY(-5px); }
+    .t-card.featured { border-color: var(--red); }
+    .t-header { background: var(--dark); padding: 1.25rem 1.5rem; }
+    .t-card.featured .t-header { background: var(--red); }
+    .t-type { font-family: 'Archivo Black', sans-serif; color: var(--white); font-size: 0.85rem; letter-spacing: 0.05em; }
+    .t-badge { display: inline-block; background: var(--gold); color: var(--dark); font-size: 0.6rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.25rem; }
+    .t-body { padding: 1.5rem; background: var(--white); }
+    .t-price { font-family: 'Archivo Black', sans-serif; font-size: 3.5rem; color: var(--dark); line-height: 1; }
+    .t-price span { font-size: 1.8rem; }
+    .t-desc { font-size: 0.85rem; color: #5a4020; line-height: 1.6; margin-top: 0.75rem; }
+    .btn-dark {
+      display: block; margin-top: 1.25rem;
+      background: var(--dark); color: var(--white);
+      padding: 0.85rem; text-align: center;
+      font-family: 'Archivo Black', sans-serif; font-size: 0.85rem; letter-spacing: 0.08em;
+      text-transform: uppercase; border: none; cursor: pointer;
+      text-decoration: none; border-radius: 4px; transition: background 0.2s;
+    }
+    .btn-dark:hover { background: var(--red); }
+
+    /* ── SPONSORS ── */
+    #sponsors { background: var(--blue); }
+    .sponsor-text { font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.8; max-width: 640px; margin-bottom: 2.5rem; }
+    .tier-head {
+      font-family: 'Archivo Black', sans-serif; color: var(--gold);
+      font-size: 1rem; letter-spacing: 0.05em; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .tier-head::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.15); }
+    .s-logos { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+    .s-box {
+      background: var(--white); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px; width: 200px; height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      color: #999; font-size: 0.78rem; font-weight: 600;
+      transition: border-color 0.2s, box-shadow 0.2s; padding: 0.75rem;
+    }
+    .s-box:hover { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .s-box img { width: 100%; height: 100%; object-fit: contain; }
+    .sponsor-cta-box {
+      background: var(--gold); border-radius: 8px;
+      padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .sponsor-cta-box h4 { font-family: 'Archivo Black', sans-serif; color: var(--dark); font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .sponsor-cta-box p { color: rgba(26,10,0,0.7); font-size: 0.9rem; line-height: 1.6; max-width: 500px; }
+    .btn-dark-solid {
+      background: var(--dark); color: var(--white);
+      padding: 0.9rem 1.75rem; font-family: 'Archivo Black', sans-serif;
+      font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;
+      border: none; cursor: pointer; text-decoration: none;
+      border-radius: 4px; transition: background 0.2s; display: inline-block; white-space: nowrap;
+    }
+    .btn-dark-solid:hover { background: var(--red); }
+
+    /* ── COMMUNITY ── */
+    #community { background: var(--cream); }
+    .comm-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .comm-text p { font-size: 1rem; line-height: 1.85; color: #3a2010; margin-bottom: 1rem; }
+    .npo-list { display: flex; flex-direction: column; gap: 1rem; }
+    .npo-card {
+      border: 2px solid var(--blue); border-radius: 6px;
+      padding: 1.25rem 1.5rem; transition: border-color 0.2s, background 0.2s;
+    }
+    .npo-card:hover { border-color: var(--red); background: rgba(176,32,32,0.04); }
+    .npo-card h4 { font-family: 'Archivo Black', sans-serif; color: var(--blue); font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .npo-card p { font-size: 0.85rem; color: #5a4020; line-height: 1.5; }
+
+    /* ── FAQs ── */
+    #faqs { background: var(--dark); }
+    .faq-grid { max-width: 760px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.25rem 0;
+    }
+    .faq-q { font-family: 'Archivo Black', sans-serif; color: var(--white); font-size: 0.95rem; cursor: pointer; display: flex; justify-content: space-between; gap: 1rem; }
+    .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--gold); flex-shrink: 0; }
+    .faq-a { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-top: 0.75rem; }
+
+    /* ── EMAIL ── */
+    .email-strip { background: var(--red); padding: 3.5rem 2rem; text-align: center; }
+    .email-strip h3 { font-family: 'Archivo Black', sans-serif; font-size: 2rem; color: var(--white); margin-bottom: 0.35rem; letter-spacing: 0.02em; }
+    .email-strip p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .e-form { display: flex; max-width: 460px; margin: 0 auto; border-radius: 6px; overflow: hidden; border: 2px solid rgba(255,255,255,0.3); }
+    .e-form input { flex: 1; padding: 0.9rem 1.25rem; border: none; font-size: 0.9rem; outline: none; background: rgba(255,255,255,0.1); color: var(--white); }
+    .e-form input::placeholder { color: rgba(255,255,255,0.45); }
+    .e-form button { background: var(--gold); color: var(--dark); border: none; padding: 0 1.5rem; font-family: 'Archivo Black', sans-serif; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+
+    /* ── FOOTER ── */
+    footer { background: #0a0500; color: rgba(255,255,255,0.35); padding: 3rem 2rem; }
+    .footer-inner { max-width: 1120px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .footer-brand .f-logo { font-family: 'Archivo Black', sans-serif; font-size: 1.4rem; color: var(--gold); letter-spacing: 0.02em; }
+    .footer-brand .f-sub { font-size: 0.72rem; margin-top: 0.3rem; }
+    .footer-links-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links-list a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links-list a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 0.5rem; }
+    .s-btn { width: 38px; height: 38px; background: rgba(255,255,255,0.06); border-radius: 4px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.95rem; transition: background 0.2s; }
+    .s-btn:hover { background: var(--gold); color: var(--dark); }
+    .footer-copy { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.72rem; text-align: center; }
+
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; }
+      .hero-left { padding: 3rem 2rem; }
+      .hero-right { width: 100%; height: 280px; }
+      .about-layout, .comm-layout { grid-template-columns: 1fr; }
+      .fe-grid, .t-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .sponsor-cta-box { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="egr-chip">EGR</span> HARVEST + BEER FESTIVAL
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#breweries">Breweries</a>
+    <a href="#food">Food &amp; Music</a>
+    <div class="dropdown">
+      <a href="#sponsors">Sponsors</a>
+      <div class="dropdown-menu">
+        <a href="sponsorship-levels.pdf" target="_blank">Sponsorship Levels &amp; Benefits</a>
+        <a href="#sponsors">2025 Sponsors</a>
+      </div>
+    </div>
+    <a href="#community">Community</a>
+    <a href="#faqs">FAQs</a>
+    <a href="volunteer.html">Volunteer</a>
+    <a href="#tickets" class="nav-ticket-btn">Get Tickets</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-text">LIBATIONS</div>
+  <div class="hero-left">
+    <div class="hero-chip">East Grand Rapids, Michigan</div>
+    <h1 class="hero-title">EGR<br>HARVEST</h1>
+    <div class="hero-plus">+BEER FESTIVAL</div>
+    <div class="hero-sub">
+      <span>Great Beer</span><span>Food</span><span>Live Music</span><span>Community</span>
+    </div>
+    <div class="hero-date-block">
+      <div class="d1">Saturday, October 10, 2026 &nbsp;&nbsp; Noon – 6:00 PM</div>
+      <div class="d2">Gaslight Village · East Grand Rapids, MI</div>
+    </div>
+    <div class="hero-btns">
+      <a href="#tickets" class="btn-red">Get Tickets</a>
+      <a href="volunteer.html" class="btn-outline-gold">Volunteer</a>
+      <a href="#about" class="btn-outline-w">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="../images/mascot.png" alt="EGR Festival Mascot — Libations!"
+      onerror="this.parentElement.innerHTML='<div class=\'mascot-placeholder\'>Place mascot.png<br>in images/ folder</div>'" />
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown">
+  <div class="countdown-label">◆ Countdown to October 10, 2026 ◆</div>
+  <div class="cd-row">
+    <div class="cd-box"><div class="cd-num-wrap"><div class="cd-num" id="cd-d">177</div></div><div class="cd-lbl">Days</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num-wrap"><div class="cd-num" id="cd-h">00</div></div><div class="cd-lbl">Hours</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num-wrap"><div class="cd-num" id="cd-m">00</div></div><div class="cd-lbl">Mins</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num-wrap"><div class="cd-num" id="cd-s">00</div></div><div class="cd-lbl">Secs</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-layout">
+      <div>
+        <div class="s-chip">About the Festival</div>
+        <h2 class="section-h">East GR's<br>Signature Fall Event</h2>
+        <div class="underbar"></div>
+        <div class="about-text">
+          <p>The EGR Harvest + Beer Festival is East Grand Rapids' premier autumn celebration — one day of craft beer, food, live music, and genuine community spirit in the heart of Gaslight Village.</p>
+          <p>We're proud to partner with the <strong>East Grand Rapids Community Foundation</strong>, turning every ticket and every pint into real impact for our schools, neighborhoods, and non-profits that make EGR extraordinary.</p>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-n">15+</div><div class="stat-d">Breweries</div></div>
+        <div class="stat-box"><div class="stat-n">$75K+</div><div class="stat-d">Donated</div></div>
+        <div class="stat-box"><div class="stat-n">5,000+</div><div class="stat-d">Attendees</div></div>
+        <div class="stat-box"><div class="stat-n">3</div><div class="stat-d">Years</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<div class="aerial-wrap" style="background-image: url('../images/photo-aerial.jpg')">
+  <div class="aerial-overlay">
+    <div class="aerial-text">Over 5,000 neighbors filled<br><span>Gaslight Village</span> last October</div>
+  </div>
+</div>
+<div class="gallery-grid">
+  <img src="../images/photo-crowd.jpg" alt="Attendees enjoying the festival" />
+  <img src="../images/photo-group.jpg" alt="Friends gathered at the festival" />
+  <img src="../images/photo-attendees.jpg" alt="Festival goers in Gaslight Village" />
+</div>
+
+<!-- SPONSORS -->
+<section id="sponsors">
+  <div class="section-inner">
+    <div class="s-chip" style="background:var(--gold);color:var(--dark)">Community Partners</div>
+    <h2 class="section-h gold">2025 Sponsors</h2>
+    <div class="underbar gold"></div>
+    <p class="sponsor-text">Our sponsors make everything possible — and multiply the community impact we create together each October in East Grand Rapids.</p>
+    <div class="tier-head">🏆 Title Sponsors</div>
+    <div class="s-logos">
+      <div class="s-box"><img src="../images/sponsor-meijer.svg" alt="Meijer" /></div>
+      <div class="s-box"><img src="../images/sponsor-zylstra.png" alt="Zylstra Door" /></div>
+    </div>
+
+    <div class="tier-head">🥇 Gold Sponsors</div>
+    <div class="s-logos">
+      <div class="s-box" style="padding:0.25rem"><img src="../images/sponsor-restoration1.webp" alt="Restoration 1 of Grand Rapids" /></div>
+      <div class="s-box"><img src="../images/sponsor-greenridge.png" alt="Greenridge Realty" /></div>
+      <div class="s-box"><img src="../images/sponsor-grapids.webp" alt="Grapids Home Services" /></div>
+    </div>
+
+    <div class="tier-head">🥈 Silver Sponsors</div>
+    <div class="s-logos">
+      <div class="s-box"><img src="../images/sponsor-allweatherseal.webp" alt="All Weather Seal West Michigan" /></div>
+      <div class="s-box"><img src="../images/sponsor-motormax.png" alt="MotorMax of GR" /></div>
+      <div class="s-box"><img src="../images/sponsor-lmcu.png" alt="Lake Michigan Credit Union" /></div>
+      <div class="s-box"><img src="../images/sponsor-mercantile.png" alt="Mercantile Bank" /></div>
+      <div class="s-box"><img src="../images/sponsor-comfortresearch.png" alt="Comfort Research" /></div>
+      <div class="s-box"><img src="../images/sponsor-crs.png" alt="Comprehensive Risk Services" /></div>
+      <div class="s-box"><img src="../images/sponsor-vernus.png" alt="Vernus Technologies" /></div>
+      <div class="s-box"><img src="../images/sponsor-orangetheory.svg" alt="Orangetheory Fitness" /></div>
+    </div>
+
+    <div class="tier-head">🥉 Bronze Sponsors</div>
+    <div class="s-logos">
+      <div class="s-box"><img src="../images/sponsor-leafguard.svg" alt="LeafGuard West Michigan" /></div>
+      <div class="s-box"><img src="../images/sponsor-lovell.png" alt="Lovell Hand &amp; Orthopedic Center" /></div>
+      <div class="s-box"><img src="../images/sponsor-founders.png" alt="Founders Brewing" /></div>
+      <div class="s-box"><img src="../images/sponsor-advanceddisposal.png" alt="Advanced Disposal" /></div>
+    </div>
+    <div class="sponsor-cta-box">
+      <div>
+        <h4>Become a 2026 Sponsor</h4>
+        <p>Multiple levels with unique benefits and visibility. Download our package to see how your organization can be part of EGR's signature fall event.</p>
+      </div>
+      <a href="sponsorship-levels.pdf" target="_blank" class="btn-dark-solid">View Sponsorship Package →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BREWERIES -->
+<section id="breweries">
+  <div class="section-inner">
+    <div class="brew-header">
+      <div>
+        <div class="s-chip" style="background:var(--gold);color:var(--dark)">Last Year's Lineup</div>
+        <h2 class="section-h white">The Breweries</h2>
+        <div class="underbar gold"></div>
+      </div>
+      <div class="starburst"><span>2026<br>Lineup<br>Coming<br>Soon!</span></div>
+    </div>
+    <div class="brew-grid">
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-darkhorse.jpg" alt="Dark Horse Brewing Co" /></div><div class="brew-name">Dark Horse Brewing Co</div><div class="brew-city">Marshall, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-founders.png" alt="Founders Brewing Co" /></div><div class="brew-name">Founders Brewing Co</div><div class="brew-city">Grand Rapids, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-leelanau.jpg" alt="Leelanau Brewing" /></div><div class="brew-name">Leelanau Brewing</div><div class="brew-city">Lake Leelanau, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-ludingtonbay.png" alt="Ludington Bay Brewing" /></div><div class="brew-name">Ludington Bay Brewing</div><div class="brew-city">Ludington, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-arvon.jpg" alt="Arvon Brewing" /></div><div class="brew-name">Arvon Brewing</div><div class="brew-city">Michigan</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-broadleaf.jpg" alt="Broadleaf Brewing" /></div><div class="brew-name">Broadleaf Brewing</div><div class="brew-city">Kentwood, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-citybuilt.png" alt="City Built Brewing" /></div><div class="brew-name">City Built Brewing</div><div class="brew-city">Grand Rapids, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-draftingtable.svg" alt="Drafting Table Brewing" /></div><div class="brew-name">Drafting Table Brewing</div><div class="brew-city">Wixom, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-transient.jpg" alt="Transient Artisan Ales" /></div><div class="brew-name">Transient Artisan Ales</div><div class="brew-city">Bridgman, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-onewell.png" alt="One Well Brewing" /></div><div class="brew-name">One Well Brewing</div><div class="brew-city">Kalamazoo, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-untitledart.jpg" alt="Untitled Art" /></div><div class="brew-name">Untitled Art</div><div class="brew-city">Waunakee, WI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-stagrestis.jpg" alt="St. Agrestis" /></div><div class="brew-name">St. Agrestis</div><div class="brew-city">Brooklyn, NY</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-angryorchard.png" alt="Angry Orchard" /></div><div class="brew-name">Angry Orchard</div><div class="brew-city">Cincinnati, OH</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-blackcalder.svg" alt="Black Calder Brewing" /></div><div class="brew-name">Black Calder Brewing</div><div class="brew-city">Grand Rapids, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-brewdetroit.jpg" alt="Brew Detroit" /></div><div class="brew-name">Brew Detroit</div><div class="brew-city">Detroit, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-vivant.jpg" alt="Brewery Vivant" /></div><div class="brew-name">Brewery Vivant</div><div class="brew-city">Grand Rapids, MI</div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="../images/brewery-roak.png" alt="Roak Brewing" /></div><div class="brew-name">Roak Brewing</div><div class="brew-city">Royal Oak, MI</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD & ENTERTAINMENT -->
+<section id="food">
+  <div class="section-inner">
+    <div class="s-chip" style="background:var(--dark);color:var(--gold)">At the Festival</div>
+    <h2 class="section-h white">Food &amp; Entertainment</h2>
+    <div class="underbar" style="background:var(--white)"></div>
+    <div class="fe-grid">
+      <div class="fe-card">
+        <div class="fe-icon">🍽️</div>
+        <h3>Local Food Vendors</h3>
+        <p>West Michigan food trucks and local vendors serving hearty fall fare to complement your craft brews all day long.</p>
+      </div>
+      <div class="fe-card">
+        <div class="fe-icon">🎵</div>
+        <h3>Live Music</h3>
+        <p>Center stage with local DJ and bands keeping the energy high throughout the day across Gaslight Village.</p>
+      </div>
+      <div class="fe-card">
+        <div class="fe-icon">🎪</div>
+        <h3>Kids &amp; Big Kids Activities</h3>
+        <p>Fun and games for all ages in the heart of EGR's beautiful Gaslight Village.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets">
+  <div class="section-inner">
+    <div class="s-chip">Join Us</div>
+    <h2 class="section-h">Grab Your Tickets</h2>
+    <div class="underbar"></div>
+    <div class="tickets-coming-soon">
+      <div class="tickets-banner">Coming Soon</div>
+      <p class="tickets-sub">Ticket details and on-sale dates will be announced here. Check back soon!</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="section-inner">
+    <div class="s-chip red">Giving Back</div>
+    <h2 class="section-h">Community Impact</h2>
+    <div class="underbar"></div>
+    <div class="comm-layout">
+      <div class="comm-text">
+        <p>Every pint poured and every ticket sold at the EGR Harvest + Beer Festival goes toward strengthening the community we love. We've been proud to invest hundreds of thousands of dollars back into East Grand Rapids.</p>
+        <p>Our primary community partner is the <strong>East Grand Rapids Community Foundation</strong>, which connects our proceeds with the non-profits and programs that matter most to our residents.</p>
+        <a href="#" class="btn-red" style="margin-top:1.5rem;display:inline-block">Our Impact Story</a>
+      </div>
+      <div class="npo-list">
+        <div class="npo-card"><h4>East Grand Rapids Community Foundation</h4><p>Our lead community partner, ensuring proceeds go where they can do the most good across EGR.</p></div>
+        <div class="npo-card"><h4>EGR Academic Boosters</h4><p>Championing academic excellence in EGR Public Schools through enrichment, resources, and opportunities for every student.</p></div>
+        <div class="npo-card"><h4>Additional 2026 Beneficiaries</h4><p>More community partners to be announced. Stay tuned for exciting additions to this year's giving list.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section id="faqs">
+  <div class="section-inner">
+    <div class="s-chip" style="background:var(--gold);color:var(--dark)">Need to Know</div>
+    <h2 class="section-h white">FAQs</h2>
+    <div class="underbar gold"></div>
+    <div class="faq-grid">
+      <div class="faq-item"><div class="faq-q">Is this event 21+ only?</div><div class="faq-a">The tasting areas are strictly 21+ with valid ID. Designated driver tickets are available for non-drinkers who want to enjoy the food, music, and vibe.</div></div>
+      <div class="faq-item"><div class="faq-q">Where is the festival located?</div><div class="faq-a">Gaslight Village, East Grand Rapids — the heart of our beautiful main street district along Wealthy Street SE.</div></div>
+      <div class="faq-item"><div class="faq-q">What are the festival hours?</div><div class="faq-a">Gates open at noon; VIP early access at 11am. The event wraps at 7pm. Full schedule announced September 2026.</div></div>
+      <div class="faq-item"><div class="faq-q">Is parking available?</div><div class="faq-a">Yes, ample parking is available throughout Gaslight Village. We strongly encourage rideshare and designating a sober driver.</div></div>
+      <div class="faq-item"><div class="faq-q">How can I volunteer?</div><div class="faq-a">Volunteers are the backbone of this event! <a href="volunteer.html" style="color:var(--gold);text-decoration:underline;">Visit our Volunteer page</a> to learn about roles and perks, then jump into the portal to register and pick your shift.</div></div>
+      <div class="faq-item"><div class="faq-q">How are proceeds distributed?</div><div class="faq-a">Net proceeds flow through the East Grand Rapids Community Foundation and directly to our partner non-profits after the event each year.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="f-logo">EGR Harvest + Beer Festival</div>
+        <div class="f-sub">Gaslight Village · East Grand Rapids, MI · Oct 10, 2026</div>
+      </div>
+      <div class="footer-links-list">
+        <a href="#about">About</a>
+        <a href="#breweries">Breweries</a>
+        <a href="#food">Food &amp; Music</a>
+        <a href="#tickets">Tickets</a>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#community">Community</a>
+        <a href="#faqs">FAQs</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/YOURPAGE" class="s-btn" title="Facebook" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/YOURPAGE" class="s-btn" title="Instagram" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2026 EGR Harvest + Beer Festival · A benefit for the East Grand Rapids Community Foundation</div>
+  </div>
+</footer>
+
+<script>
+  const festDate = new Date('2026-10-10T12:00:00');
+  function tick() {
+    const diff = festDate - new Date();
+    if (diff <= 0) return;
+    document.getElementById('cd-d').textContent = Math.floor(diff/86400000);
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
