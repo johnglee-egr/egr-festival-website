@@ -19,6 +19,7 @@
       --white:  #ffffff;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: hidden; }
     body { font-family: 'Archivo', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
 
     /* ── NAV ── */
@@ -434,11 +435,26 @@
       .nav-links a { height: auto; padding: 0.85rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
       .nav-links .nav-ticket-btn { margin: 0.75rem 2rem; height: auto !important; padding: 0.75rem 1.5rem !important; text-align: center; }
       .hero { flex-direction: column; }
-      .hero-left { padding: 3rem 2rem; }
-      .hero-right { width: 100%; height: 280px; }
+      .hero-left { padding: 3rem 1.5rem 2rem; }
+      .hero-right { width: 100%; height: auto; min-height: 240px; overflow: hidden; }
+      .hero-right img { max-width: 100%; }
       .about-layout, .comm-layout { grid-template-columns: 1fr; }
       .fe-grid, .t-grid { grid-template-columns: 1fr; }
       .sponsor-cta-box { flex-direction: column; }
+    }
+    @media (max-width: 540px) {
+      .hero-title { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .hero-plus  { font-size: clamp(2rem,   9vw, 3.5rem); }
+      .hero-btns  { flex-direction: column; }
+      .hero-btns a, .hero-btns button { width: 100%; text-align: center; }
+      .cd-num-wrap { width: 70px; height: 70px; }
+      .cd-num { font-size: 2rem; }
+      .cd-sep { font-size: 1.8rem; }
+      .cd-row { gap: 0.2rem; }
+      .e-form { flex-direction: column; border: none; border-radius: 6px; overflow: hidden; }
+      .e-form input { border-radius: 6px 6px 0 0; border: 2px solid rgba(255,255,255,0.3); border-bottom: none; padding: 0.85rem 1rem; }
+      .e-form button { padding: 0.85rem 1rem; border-radius: 0 0 6px 6px; }
+      section { padding: 3.5rem 1.25rem; }
     }
   </style>
 </head>
