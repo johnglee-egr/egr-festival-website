@@ -287,14 +287,37 @@
     .s-btn:hover { background: var(--gold); color: var(--dark); }
     .footer-copy { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.72rem; text-align: center; }
 
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto;
+    }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.2s; }
+
     @media (max-width: 900px) {
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; position: absolute;
+        top: 64px; left: 0; right: 0; z-index: 200;
+        background: var(--blue); border-top: 2px solid var(--gold);
+        padding: 0.5rem 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { height: auto; padding: 0.85rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .nav-links .nav-ticket-btn { margin: 0.75rem 2rem; height: auto !important; padding: 0.75rem 1.5rem !important; text-align: center; }
       .why-grid, .expect-grid { grid-template-columns: 1fr 1fr; }
       .roles-grid { grid-template-columns: 1fr; }
       .signup-box { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      .page-hero-inner, .hero-below {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .vol-hero-photo { width: 100%; }
+      .hero-meta-col { width: 100%; }
     }
     @media (max-width: 540px) {
       .why-grid, .expect-grid { grid-template-columns: 1fr; }
+      .page-title { font-size: clamp(2.5rem, 12vw, 4rem); }
     }
   </style>
 </head>
@@ -305,6 +328,9 @@
   <a href="index.html" class="nav-logo">
     <span class="egr-chip">EGR</span> HARVEST + BEER FESTIVAL
   </a>
+  <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-links">
     <a href="index.html#about">About</a>
     <a href="index.html#breweries">Breweries</a>
