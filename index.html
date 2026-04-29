@@ -455,6 +455,10 @@
       .e-form input { border-radius: 6px 6px 0 0; border: 2px solid rgba(255,255,255,0.3); border-bottom: none; padding: 0.85rem 1rem; }
       .e-form button { padding: 0.85rem 1rem; border-radius: 0 0 6px 6px; }
       section { padding: 3.5rem 1.25rem; }
+      /* Gallery: hide middle photo, show left + right as 2-column */
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img:nth-child(2) { display: none; }
+      .gallery-grid img { height: 200px; }
     }
   </style>
 </head>
