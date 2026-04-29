@@ -111,7 +111,8 @@
     }
     .meta-item .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
     .hero-portal-btn {
-      margin-top: 2.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.75rem;
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--gold); color: var(--dark);
       padding: 0.95rem 2rem; font-family: 'Archivo Black', sans-serif;
@@ -119,6 +120,9 @@
       text-decoration: none; border-radius: 4px; transition: all 0.2s;
     }
     .hero-portal-btn:hover { background: #d98e00; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .page-hero-top {
+      max-width: 1120px; margin: 0 auto 1.25rem; position: relative; z-index: 1;
+    }
 
     /* ── SHARED ── */
     section { padding: 5rem 2rem; }
@@ -315,197 +319,27 @@
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero-bg">VOLUNTEER</div>
-  <div class="page-hero-inner">
+  <div class="page-hero-top">
     <div class="page-chip">Join the Team</div>
-    <h1 class="page-title">Be Part of<br><span class="gold">Something</span><br>Great</h1>
-    <p class="page-subtitle">Volunteers are the heartbeat of the EGR Harvest + Beer Festival. Whether you're pouring pints, directing traffic, or cheering on attendees — your hours make the magic happen.</p>
-    <div class="page-hero-meta">
-      <div class="meta-item"><span class="dot"></span>Saturday, October 10, 2026</div>
-      <div class="meta-item"><span class="dot"></span>Gaslight Village, East Grand Rapids</div>
-      <div class="meta-item"><span class="dot"></span>Multiple Shifts Available</div>
-    </div>
-    <!-- ↓ Update this href to your deployed volunteer portal URL before going live -->
-    <a href="https://volunteers.egrharvestfest.com/volunteer" class="hero-portal-btn" target="_blank" rel="noopener">
-      🙋 Sign Up to Volunteer →
-    </a>
   </div>
-  <div class="vol-hero-photo">
-    <img src="images/photo-volunteers.jpg" alt="EGR Harvest Festival volunteers" />
+  <div class="page-hero-inner">
+    <div>
+      <h1 class="page-title">Be Part of<br><span class="gold">Something</span><br>Great</h1>
+      <a href="https://volunteers.egrharvestfest.com/volunteer" class="hero-portal-btn" target="_blank" rel="noopener">
+        🙋 Sign Up to Volunteer →
+      </a>
+      <p class="page-subtitle">Volunteers are the heartbeat of the EGR Harvest + Beer Festival. Whether you're pouring pints, directing traffic, or cheering on attendees — your hours make the magic happen.</p>
+      <div class="page-hero-meta">
+        <div class="meta-item"><span class="dot"></span>Saturday, October 10, 2026</div>
+        <div class="meta-item"><span class="dot"></span>Gaslight Village, East Grand Rapids</div>
+        <div class="meta-item"><span class="dot"></span>Multiple Shifts Available</div>
+      </div>
+    </div>
+    <div class="vol-hero-photo">
+      <img src="images/photo-volunteers.jpg" alt="EGR Harvest Festival volunteers" />
+    </div>
   </div>
 </div>
-
-<!-- WHY VOLUNTEER -->
-<section id="why">
-  <div class="section-inner">
-    <div class="s-chip">Perks &amp; Benefits</div>
-    <h2 class="section-h">Why Volunteer?</h2>
-    <div class="underbar"></div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">🍺</div>
-        <h3>Complimentary Entry</h3>
-        <p>All volunteers receive complimentary festival admission, including access to the tasting areas during your off-shift time.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">👕</div>
-        <h3>Official Festival Gear</h3>
-        <p>Every volunteer gets an exclusive EGR Harvest + Beer Festival shirt and credential — a memento from a great day of giving back.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🍔</div>
-        <h3>Meals Provided</h3>
-        <p>We keep our volunteers fueled. Meals and non-alcoholic beverages are provided for all volunteers throughout your shift.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🤝</div>
-        <h3>Community Impact</h3>
-        <p>Your time directly fuels donations to EGR non-profits. Every hour you volunteer helps us write bigger checks to local causes.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🎉</div>
-        <h3>VIP After-Party Access</h3>
-        <p>All volunteers are invited to the post-festival volunteer appreciation gathering — a chance to celebrate together after a great event.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌟</div>
-        <h3>Be Part of the Crew</h3>
-        <p>Join a community of dedicated EGR neighbors and friends who come back year after year because the experience is simply that good.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VOLUNTEER ROLES -->
-<section id="roles">
-  <div class="section-inner">
-    <div class="s-chip" style="background:var(--gold);color:var(--dark)">Open Positions</div>
-    <h2 class="section-h white">Volunteer Roles</h2>
-    <div class="underbar gold"></div>
-    <div class="roles-grid">
-      <div class="role-card">
-        <div class="role-icon">🍺</div>
-        <div class="role-info">
-          <h3>Beer Pouring</h3>
-          <p>Work alongside brewery representatives to pour samples, manage token collection, and keep the tasting experience flowing smoothly.</p>
-          <span class="role-tag">High Demand</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">🎟️</div>
-        <div class="role-info">
-          <h3>Gate &amp; Ticketing</h3>
-          <p>Welcome guests, scan tickets, check IDs, and distribute souvenir glasses and token packages at festival entry points.</p>
-          <span class="role-tag">Morning Shift</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">🗺️</div>
-        <div class="role-info">
-          <h3>Information &amp; Wayfinding</h3>
-          <p>Staff the information booth and roam the festival to help guests find breweries, food vendors, restrooms, and entertainment stages.</p>
-          <span class="role-tag">People Person</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">🚗</div>
-        <div class="role-info">
-          <h3>Parking &amp; Traffic</h3>
-          <p>Guide vehicles to available parking, manage flow around Gaslight Village, and assist with safe rideshare drop-off and pickup zones.</p>
-          <span class="role-tag">Outdoor Role</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">🧹</div>
-        <div class="role-info">
-          <h3>Setup &amp; Teardown</h3>
-          <p>Help the team set up tents, signage, and equipment before the festival opens, and assist with breakdown at the end of the day.</p>
-          <span class="role-tag">Early / Late</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">📸</div>
-        <div class="role-info">
-          <h3>Social Media &amp; Photography</h3>
-          <p>Capture the energy of the day for the festival's social channels. Photography experience preferred but enthusiasm is equally welcome.</p>
-          <span class="role-tag">Creative Role</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">🏥</div>
-        <div class="role-info">
-          <h3>Safety &amp; First Aid Support</h3>
-          <p>Work alongside our safety team to monitor guest wellbeing, manage responsible service situations, and direct guests to medical staff if needed.</p>
-          <span class="role-tag">Training Provided</span>
-        </div>
-      </div>
-      <div class="role-card">
-        <div class="role-icon">🎵</div>
-        <div class="role-info">
-          <h3>Stage &amp; Entertainment Crew</h3>
-          <p>Assist the entertainment team with stage management, performer logistics, and crowd management around performance areas.</p>
-          <span class="role-tag">Music Lover</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT TO EXPECT -->
-<section id="expect">
-  <div class="section-inner">
-    <div class="s-chip" style="background:var(--dark);color:var(--gold)">The Process</div>
-    <h2 class="section-h white">What to Expect</h2>
-    <div class="underbar" style="background:var(--white)"></div>
-    <div class="expect-grid">
-      <div class="expect-step">
-        <div class="step-num">1</div>
-        <div class="step-icon">📋</div>
-        <h3>Register Online</h3>
-        <p>Jump into the volunteer portal, create your profile, and pick your preferred shift and role — takes under 2 minutes.</p>
-      </div>
-      <div class="expect-step">
-        <div class="step-num">2</div>
-        <div class="step-icon">📱</div>
-        <h3>Get Confirmed</h3>
-        <p>You'll receive a confirmation plus SMS reminders 24 hours and 2 hours before your shift — so you're never caught off guard.</p>
-      </div>
-      <div class="expect-step">
-        <div class="step-num">3</div>
-        <div class="step-icon">📚</div>
-        <h3>Attend Orientation</h3>
-        <p>Join a brief pre-event orientation (in-person or virtual) to meet the team and learn everything you need to know.</p>
-      </div>
-      <div class="expect-step">
-        <div class="step-num">4</div>
-        <div class="step-icon">🎉</div>
-        <h3>Show Up &amp; Shine</h3>
-        <p>Arrive at your check-in time, pick up your gear, and help make the EGR Harvest + Beer Festival incredible.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SIGN UP -->
-<section id="signup">
-  <div class="section-inner">
-    <div class="signup-box">
-      <div class="signup-text">
-        <h2>Ready to <span class="gold">Volunteer?</span></h2>
-        <p>The volunteer portal is open! Register in minutes, pick your preferred shift, and team up with friends. Spots fill up fast — don't wait.</p>
-        <p>Through the portal you can register, look up your schedule, request a partner, and get shift reminders sent straight to your phone.</p>
-        <p class="note">Questions? Email us at <a href="mailto:volunteer@egrharvestfest.com" style="color:rgba(255,255,255,0.55);text-decoration:underline;">volunteer@egrharvestfest.com</a></p>
-      </div>
-      <div class="signup-portal">
-        <div class="portal-icon">🙋</div>
-        <div class="portal-title">Volunteer Portal</div>
-        <div class="portal-sub">Register, pick your shift, and manage your schedule — all in one place.</div>
-        <!-- ↓ Update this href to your deployed volunteer portal URL before going live -->
-        <a href="https://volunteers.egrharvestfest.com/volunteer" class="portal-btn" target="_blank" rel="noopener">Sign Up to Volunteer →</a>
-        <div class="portal-live-badge">Portal Open</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FAQs -->
 <section id="faqs">
