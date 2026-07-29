@@ -300,6 +300,42 @@
     .fe-card h3 { font-family: 'Archivo Black', sans-serif; color: var(--white); font-size: 1.1rem; margin-bottom: 0.6rem; }
     .fe-card p { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
 
+    /* Live music lineup — sits under the Food & Entertainment cards */
+    .lineup-h {
+      font-family: 'Archivo Black', sans-serif; color: var(--white);
+      font-size: 1.5rem; margin: 3rem 0 0.4rem; text-align: center;
+    }
+    .lineup-note {
+      text-align: center; font-size: 0.8125rem; color: rgba(255,255,255,0.75);
+      margin-bottom: 1.5rem;
+    }
+    .lineup-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .act-card {
+      display: flex; flex-direction: column; align-items: flex-start;
+      background: rgba(0,0,0,0.15); border-radius: 8px; padding: 1.5rem;
+      border-top: 4px solid rgba(255,255,255,0.25);
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .act-card:hover { background: rgba(0,0,0,0.3); transform: translateY(-3px); }
+    .act-card.act-headliner { border-top-color: var(--gold); }
+    .act-time {
+      font-family: 'Archivo Black', sans-serif; font-size: 1.25rem;
+      color: var(--gold); letter-spacing: 0.02em;
+    }
+    .act-name {
+      font-family: 'Archivo Black', sans-serif; color: var(--white);
+      font-size: 1.25rem; margin: 0.35rem 0 0.5rem; line-height: 1.2;
+    }
+    .act-desc {
+      font-size: 0.875rem; color: rgba(255,255,255,0.8);
+      line-height: 1.6; margin-bottom: 1rem;
+    }
+    .act-link {
+      margin-top: auto; font-size: 0.8125rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.02em;
+    }
+    .act-card:hover .act-link { color: var(--white); }
+
     /* ── TICKETS ── */
     #tickets { background: var(--cream); }
     .tickets-coming-soon { text-align: center; padding: 2rem 0 1rem; }
@@ -439,7 +475,7 @@
       .hero-right { width: 100%; height: auto; min-height: 240px; overflow: hidden; order: 1; }
       .hero-right img { max-width: 100%; }
       .about-layout, .comm-layout { grid-template-columns: 1fr; }
-      .fe-grid, .t-grid { grid-template-columns: 1fr; }
+      .fe-grid, .t-grid, .lineup-grid { grid-template-columns: 1fr; }
       .sponsor-cta-box { flex-direction: column; }
     }
     @media (max-width: 540px) {
@@ -644,13 +680,37 @@
       <div class="fe-card">
         <div class="fe-icon">🎵</div>
         <h3>Live Music</h3>
-        <p>Center stage with local DJ and bands keeping the energy high throughout the day across Gaslight Village.</p>
+        <p>Three acts on center stage keeping the energy high all day &mdash; a local band, a DJ set, and our headliner. Full lineup below.</p>
       </div>
       <div class="fe-card">
         <div class="fe-icon">🎪</div>
         <h3>Kids &amp; Big Kids Activities</h3>
         <p>Fun and games for all ages in the heart of EGR's beautiful Gaslight Village.</p>
       </div>
+    </div>
+
+    <!-- LIVE MUSIC LINEUP -->
+    <h3 class="lineup-h">Live Music Lineup</h3>
+    <p class="lineup-note">Set times are approximate &mdash; music runs from noon until the festival closes.</p>
+    <div class="lineup-grid">
+      <a class="act-card" href="https://www.facebook.com/YetisGR/" target="_blank" rel="noopener">
+        <span class="act-time">12:00 PM</span>
+        <h4 class="act-name">The Yetis</h4>
+        <p class="act-desc">Grand Rapids based band playing 90s hits with a straggler here and there.</p>
+        <span class="act-link">Facebook &rarr;</span>
+      </a>
+      <a class="act-card" href="https://www.everythingab.com/" target="_blank" rel="noopener">
+        <span class="act-time">2:00 PM</span>
+        <h4 class="act-name">DJ AB</h4>
+        <p class="act-desc">Keeping the afternoon energy high with a mix that spans decades and genres.</p>
+        <span class="act-link">everythingab.com &rarr;</span>
+      </a>
+      <a class="act-card act-headliner" href="https://melophobix.com/home" target="_blank" rel="noopener">
+        <span class="act-time">4:00 PM</span>
+        <h4 class="act-name">Melophobix</h4>
+        <p class="act-desc">Headlining the festival with Cage-Free Funk.</p>
+        <span class="act-link">melophobix.com &rarr;</span>
+      </a>
     </div>
   </div>
 </section>
