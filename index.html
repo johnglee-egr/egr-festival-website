@@ -391,6 +391,19 @@
     }
     .s-box:hover { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
     .s-box img { width: 100%; height: 100%; object-fit: contain; }
+    /* Tile size tracks the tier. The sponsorship package sells "Premier",
+       "Prominent" and plain logo placement at different prices, so a Title
+       sponsor should not get the same footprint as Bronze. */
+    .s-logos.tier-title   .s-box { width: 300px; height: 150px; padding: 1rem; }
+    .s-logos.tier-diamond .s-box { width: 260px; height: 130px; padding: 0.9rem; }
+    .s-logos.tier-gold    .s-box { width: 220px; height: 110px; }
+    .s-logos.tier-silver  .s-box { width: 200px; height: 100px; }
+    .s-logos.tier-bronze  .s-box { width: 170px; height: 85px; padding: 0.6rem; }
+    @media (max-width: 540px) {
+      .s-logos { gap: 0.75rem; }
+      .s-logos .s-box { max-width: 100%; }
+      .s-logos.tier-title .s-box, .s-logos.tier-diamond .s-box { width: 100%; }
+    }
     .sponsor-cta-box {
       background: var(--gold); border-radius: 8px;
       padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
@@ -516,7 +529,7 @@
       <a href="#sponsors">Sponsors</a>
       <div class="dropdown-menu">
         <a href="images/EGR_Community_Events.pdf" target="_blank">Sponsorship Levels &amp; Benefits</a>
-        <a href="#sponsors">2025 Sponsors</a>
+        <a href="#sponsors">2026 Sponsors</a>
       </div>
     </div>
     <a href="#community">Community</a>
@@ -604,40 +617,44 @@
 <section id="sponsors">
   <div class="section-inner">
     <div class="s-chip" style="background:var(--gold);color:var(--dark)">Community Partners</div>
-    <h2 class="section-h gold">2025 Sponsors</h2>
+    <h2 class="section-h gold">2026 Sponsors</h2>
     <div class="underbar gold"></div>
     <p class="sponsor-text">Our sponsors make everything possible — and multiply the community impact we create together each October in East Grand Rapids.</p>
     <div class="tier-head">🏆 Title Sponsors</div>
-    <div class="s-logos">
+    <div class="s-logos tier-title">
+      <!-- Only a 214x77 file is available, so it is capped at its native size rather than
+           stretched soft. Drop the cap once Genisys sends a larger or vector logo. -->
+      <div class="s-box"><img src="images/sponsor-genisys.png" alt="Genisys Credit Union" style="max-width:214px;max-height:77px" /></div>
+      <div class="s-box"><img src="images/sponsor-conveyability.png" alt="Conveyability" /></div>
+    </div>
+
+    <div class="tier-head">💎 Diamond Sponsor</div>
+    <div class="s-logos tier-diamond">
       <div class="s-box"><img src="images/sponsor-meijer.svg" alt="Meijer" /></div>
-      <div class="s-box"><img src="images/sponsor-zylstra.png" alt="Zylstra Door" /></div>
     </div>
 
     <div class="tier-head">🥇 Gold Sponsors</div>
-    <div class="s-logos">
-      <div class="s-box" style="padding:0.25rem"><img src="images/sponsor-restoration1.webp" alt="Restoration 1 of Grand Rapids" /></div>
-      <div class="s-box"><img src="images/sponsor-greenridge.png" alt="Greenridge Realty" /></div>
-      <div class="s-box"><img src="images/sponsor-grapids.webp" alt="Grapids Home Services" /></div>
+    <div class="s-logos tier-gold">
+      <div class="s-box"><img src="images/sponsor-zylstra.png" alt="Zylstra Door" /></div>
+      <div class="s-box"><img src="images/sponsor-kohler.png" alt="Kohler Generators" /></div>
     </div>
 
     <div class="tier-head">🥈 Silver Sponsors</div>
-    <div class="s-logos">
-      <div class="s-box"><img src="images/sponsor-allweatherseal.webp" alt="All Weather Seal West Michigan" /></div>
-      <div class="s-box"><img src="images/sponsor-motormax.png" alt="MotorMax of GR" /></div>
-      <div class="s-box"><img src="images/sponsor-lmcu.png" alt="Lake Michigan Credit Union" /></div>
-      <div class="s-box"><img src="images/sponsor-mercantile.png" alt="Mercantile Bank" /></div>
-      <div class="s-box"><img src="images/sponsor-comfortresearch.png" alt="Comfort Research" /></div>
-      <div class="s-box"><img src="images/sponsor-crs.png" alt="Comprehensive Risk Services" /></div>
-      <div class="s-box"><img src="images/sponsor-vernus.png" alt="Vernus Technologies" /></div>
-      <div class="s-box"><img src="images/sponsor-orangetheory.svg" alt="Orangetheory Fitness" /></div>
+    <div class="s-logos tier-silver">
+      <div class="s-box"><img src="images/sponsor-greenridge.png" alt="Greenridge Realty" /></div>
+      <!-- Corewell brand rules: unmodified file, never under 1in wide, clear space of one
+           cap-height (~7.6% of logo width) on all sides. 1rem padding satisfies both. -->
+      <div class="s-box" style="padding:1rem"><img src="images/sponsor-corewell.svg" alt="Corewell Health" /></div>
     </div>
 
     <div class="tier-head">🥉 Bronze Sponsors</div>
-    <div class="s-logos">
-      <div class="s-box"><img src="images/sponsor-leafguard.svg" alt="LeafGuard West Michigan" /></div>
-      <div class="s-box"><img src="images/sponsor-lovell.png" alt="Lovell Hand &amp; Orthopedic Center" /></div>
-      <div class="s-box"><img src="images/sponsor-founders.png" alt="Founders Brewing" /></div>
-      <div class="s-box"><img src="images/sponsor-advanceddisposal.png" alt="Advanced Disposal" /></div>
+    <div class="s-logos tier-bronze">
+      <div class="s-box"><img src="images/sponsor-mercantile.png" alt="Mercantile Bank" /></div>
+      <div class="s-box"><img src="images/sponsor-restoration1-cropped.webp" alt="Restoration 1 of Grand Rapids" /></div>
+      <div class="s-box"><img src="images/sponsor-grapids.webp" alt="Grapids Heating &amp; Cooling" /></div>
+      <div class="s-box"><img src="images/sponsor-allweatherseal.webp" alt="All Weather Seal West Michigan" /></div>
+      <div class="s-box"><img src="images/sponsor-vernus.png" alt="Vernus Technologies" /></div>
+      <div class="s-box"><img src="images/sponsor-crs.png" alt="Comprehensive Risk Services" /></div>
     </div>
     <div class="sponsor-cta-box">
       <div>
