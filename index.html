@@ -235,7 +235,7 @@
       font-size: 0.6rem; letter-spacing: 0.04em;
       text-transform: uppercase; line-height: 1.4;
     }
-    .brew-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .brew-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
     .brew-card {
       background: var(--white); border-radius: 6px; padding: 1rem;
       text-align: center; border: 2px solid transparent;
@@ -244,9 +244,14 @@
     }
     .brew-card:hover { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
     .brew-icon { display: flex; align-items: center; justify-content: center; width: 100%; }
-    .brew-icon img { max-width: 150px; max-height: 70px; width: 100%; object-fit: contain; }
+    .brew-icon img { max-width: 180px; max-height: 70px; width: 100%; object-fit: contain; }
     .brew-name { display: none; }
     .brew-city { display: none; }
+    /* 16 full-width cards is a long scroll on a phone, so pair them up. */
+    @media (max-width: 540px) {
+      .brew-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .brew-card { padding: 0.75rem; }
+    }
 
     .vendor-logos {
       display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
@@ -348,6 +353,9 @@
       clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
     }
     .tickets-sub { margin-top: 1.5rem; color: #7a5c3a; font-size: 0.95rem; }
+    /* Same arrow banner, now the button that carries people to the ticket store. */
+    a.tickets-banner { text-decoration: none; transition: background 0.2s, transform 0.2s; }
+    a.tickets-banner:hover, a.tickets-banner:focus-visible { background: var(--red2); transform: translateY(-3px); }
     .t-card {
       border: 3px solid var(--dark); border-radius: 8px; overflow: hidden;
       transition: transform 0.2s; position: relative;
@@ -670,13 +678,29 @@
 <section id="breweries">
   <div class="section-inner">
     <div>
-      <div class="s-chip" style="background:var(--gold);color:var(--dark)">Breweries</div>
+      <div class="s-chip" style="background:var(--gold);color:var(--dark)">2026 Lineup</div>
       <h2 class="section-h white">The Breweries</h2>
       <div class="underbar gold"></div>
     </div>
-    <div class="tickets-coming-soon">
-      <div class="tickets-banner">2026 Line-Up Coming Soon</div>
-      <p class="tickets-sub" style="color:rgba(255,255,255,0.55)">We're locking in an incredible roster of craft breweries — check back soon for the full 2026 lineup!</p>
+    <!-- Alphabetical. A few breweries only publish a logo drawn for a dark
+         backdrop, so those cards take the brewery's own background colour. -->
+    <div class="brew-grid">
+      <div class="brew-card" style="background:#000000"><div class="brew-icon"><img src="images/brewery-3floyds.svg" alt="3 Floyds Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-arvon.jpg" alt="Arvon Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-bells.jpg" alt="Bell&#39;s Brewery" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-blackcalder.svg" alt="Black Calder Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-blackrocks.png" alt="Blackrocks Brewery" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-broadleaf.jpg" alt="Broadleaf Brewing" /></div></div>
+      <div class="brew-card" style="background:#11181c"><div class="brew-icon"><img src="images/brewery-citybuilt.png" alt="City Built Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-draftingtable.svg" alt="Drafting Table Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-founders.png" alt="Founders Brewing Co." /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-longdrink.svg" alt="The Long Drink" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-ludingtonbay.png" alt="Ludington Bay Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-mothfire.png" alt="Mothfire Brewing Co." /></div></div>
+      <div class="brew-card" style="background:#993fd9"><div class="brew-icon"><img src="images/brewery-onewell.png" alt="One Well Brewing" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-shorts.jpg" alt="Short&#39;s Brewing Company" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-transient.jpg" alt="Transient Artisan Ales" /></div></div>
+      <div class="brew-card"><div class="brew-icon"><img src="images/brewery-warpigs.svg" alt="WarPigs Brewing" /></div></div>
     </div>
   </div>
 </section>
@@ -738,8 +762,8 @@
     <h2 class="section-h">Grab Your Tickets</h2>
     <div class="underbar"></div>
     <div class="tickets-coming-soon">
-      <div class="tickets-banner">Coming Soon</div>
-      <p class="tickets-sub">Ticket details and on-sale dates will be announced here. Check back soon!</p>
+      <a href="https://2026-egr-harvest-festival.square.site/" target="_blank" rel="noopener" class="tickets-banner">Buy Tickets</a>
+      <p class="tickets-sub">Secure checkout through our Square store &mdash; opens in a new tab.</p>
     </div>
   </div>
 </section>
