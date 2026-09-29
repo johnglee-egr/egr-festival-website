@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EGR Harvest Festival</title>
+  <meta name="description" content="Free admission to the EGR Harvest Festival in Gaslight Village, East Grand Rapids — Saturday, October 10, 2026, noon to 6 PM. Sixteen breweries, live music, food and family games, benefiting the East Grand Rapids Community Foundation." />
+  <link rel="canonical" href="https://www.egrharvestfest.com/" />
+  <link rel="icon" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="EGR Harvest Festival" />
+  <meta property="og:title" content="EGR Harvest Festival &mdash; October 10, 2026" />
+  <meta property="og:description" content="Free admission to the EGR Harvest Festival in Gaslight Village, East Grand Rapids — Saturday, October 10, 2026, noon to 6 PM. Sixteen breweries, live music, food and family games, benefiting the East Grand Rapids Community Foundation." />
+  <meta property="og:url" content="https://www.egrharvestfest.com/" />
+  <meta property="og:image" content="https://www.egrharvestfest.com/images/hero-festival.jpg" />
+  <meta property="og:image:alt" content="EGR Harvest Festival in Gaslight Village" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -41,7 +53,7 @@
       padding: 0.1rem 0.5rem; border-radius: 3px;
       font-size: 1.1rem; font-weight: 900;
     }
-    .nav-links { display: flex; align-items: center; }
+    .nav-links { display: flex; align-items: center; margin-left: auto; }
     .nav-links a {
       padding: 0 0.9rem; height: 60px; display: flex; align-items: center;
       color: rgba(255,255,255,0.85); text-decoration: none;
@@ -59,12 +71,14 @@
     .dropdown:hover .dropdown-menu { display: block; }
     .dropdown-menu a { height: auto; padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .nav-ticket-btn {
-      background: var(--red) !important; color: var(--white) !important;
+      display: inline-flex; align-items: center; flex-shrink: 0;
+      background: var(--red); color: var(--white); text-decoration: none;
       border-radius: 4px; margin-left: 0.75rem;
-      padding: 0 1.25rem !important; height: 38px !important;
-      font-weight: 900 !important;
+      padding: 0 1.25rem; height: 38px;
+      font-size: 0.75rem; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s;
     }
-    .nav-ticket-btn:hover { background: var(--red2) !important; }
+    .nav-ticket-btn:hover { background: var(--red2); }
 
     /* ── HERO ── */
     .hero {
@@ -205,7 +219,7 @@
     #about { background: var(--cream); }
     .about-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
     .about-text p { font-size: 1rem; line-height: 1.85; color: #3a2010; margin-bottom: 1rem; }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
     .stat-box {
       background: var(--blue); padding: 1.5rem; text-align: center; border-radius: 6px;
     }
@@ -490,16 +504,27 @@
       }
       .nav-links.open { display: flex; }
       .nav-links a { height: auto; padding: 0.85rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .nav-links .nav-ticket-btn { margin: 0.75rem 2rem; height: auto !important; padding: 0.75rem 1.5rem !important; text-align: center; }
+      .nav-ticket-btn { margin-left: auto; height: 34px; padding: 0 1rem; }
+      .nav-hamburger { margin-left: 0.25rem; }
+      /* The sponsors submenu opened on hover only, so it was unreachable by touch. */
+      .dropdown > a::after { content: ''; }
+      .dropdown-menu {
+        display: block; position: static; min-width: 0;
+        background: rgba(0,0,0,0.18); border-top: none; border-radius: 0;
+      }
+      .dropdown-menu a { padding-left: 3.25rem; font-size: 0.7rem; }
       .hero { flex-direction: column; }
       .hero-left { padding: 3rem 1.5rem 2rem; order: 2; }
       .hero-right { width: 100%; height: auto; min-height: 240px; overflow: hidden; order: 1; }
       .hero-right img { max-width: 100%; }
-      .about-layout, .comm-layout { grid-template-columns: 1fr; }
+      /* 1fr can resolve wider than the screen and silently clip the stat boxes. */
+      .about-layout, .comm-layout { grid-template-columns: minmax(0, 1fr); }
       .fe-grid, .t-grid, .lineup-grid { grid-template-columns: 1fr; }
       .sponsor-cta-box { flex-direction: column; }
     }
     @media (max-width: 540px) {
+      .stat-box { padding: 1.1rem 0.75rem; }
+      .stat-n { font-size: 1.8rem; }
       .hero-title { font-size: clamp(2.8rem, 12vw, 4.5rem); }
       .hero-plus  { font-size: clamp(2rem,   9vw, 3.5rem); }
       .hero-btns  { flex-direction: column; }
@@ -526,9 +551,6 @@
   <a href="index.html" class="nav-logo">
     <span class="egr-chip">EGR</span> HARVEST FESTIVAL
   </a>
-  <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#breweries">Breweries</a>
@@ -543,8 +565,11 @@
     <a href="#community">Community</a>
     <a href="#faqs">FAQs</a>
     <a href="volunteer.html">Volunteer</a>
-    <a href="#tickets" class="nav-ticket-btn">Get Tickets</a>
   </div>
+  <a href="#tickets" class="nav-ticket-btn">Tickets</a>
+  <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -562,7 +587,7 @@
       <div class="d2">Gaslight Village · East Grand Rapids, MI</div>
     </div>
     <div class="hero-btns">
-      <a href="#tickets" class="btn-red">Get Tickets</a>
+      <a href="#tickets" class="btn-red">Pre-Purchase Tickets</a>
       <a href="volunteer.html" class="btn-outline-gold">Volunteer</a>
       <a href="#about" class="btn-outline-w">Learn More</a>
     </div>
@@ -759,11 +784,11 @@
 <section id="tickets">
   <div class="section-inner">
     <div class="s-chip">Join Us</div>
-    <h2 class="section-h">Grab Your Tickets</h2>
+    <h2 class="section-h">Admission Is Free</h2>
     <div class="underbar"></div>
     <div class="tickets-coming-soon">
-      <a href="https://2026-egr-harvest-festival.square.site/" target="_blank" rel="noopener" class="tickets-banner">Buy Tickets</a>
-      <p class="tickets-sub">Secure checkout through our Square store &mdash; opens in a new tab.</p>
+      <a href="https://2026-egr-harvest-festival.square.site/" target="_blank" rel="noopener" class="tickets-banner">Pre-Purchase Tickets</a>
+      <p class="tickets-sub">Pre-purchase drink and game tickets through our Square store &mdash; opens in a new tab.</p>
     </div>
   </div>
 </section>
@@ -778,7 +803,7 @@
       <div class="comm-text">
         <p>Every pint poured and every ticket sold at the EGR Harvest Festival goes toward strengthening the community we love. We've been proud to invest hundreds of thousands of dollars back into East Grand Rapids.</p>
         <p>Our primary community partner is the <strong>East Grand Rapids Community Foundation</strong>, which connects our proceeds with the non-profits and programs that matter most to our residents.</p>
-        <a href="#" class="btn-red" style="margin-top:1.5rem;display:inline-block">Our Impact Story</a>
+        <a href="https://www.eastgrmi.gov/555/East-Grand-Rapids-Community-Foundation" target="_blank" rel="noopener" class="btn-red" style="margin-top:1.5rem;display:inline-block">About the Community Foundation</a>
       </div>
       <div class="npo-list">
         <div class="npo-card"><h4>East Grand Rapids Community Foundation</h4><p>Our lead community partner, ensuring proceeds go where they can do the most good across EGR.</p></div>
@@ -822,10 +847,10 @@
         <a href="#faqs">FAQs</a>
       </div>
       <div class="footer-social">
-        <a href="https://www.facebook.com/YOURPAGE" class="s-btn" title="Facebook" target="_blank" rel="noopener">
+        <a href="https://www.facebook.com/EGR-Harvest-Beer-Festival-61557574347612/" class="s-btn" title="Facebook" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         </a>
-        <a href="https://www.instagram.com/YOURPAGE" class="s-btn" title="Instagram" target="_blank" rel="noopener">
+        <a href="https://www.instagram.com/egrharvestbeerfestival" class="s-btn" title="Instagram" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
       </div>
