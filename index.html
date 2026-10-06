@@ -144,6 +144,13 @@
     }
     .hero-date-block .d1 { font-family: 'Archivo Black', sans-serif; font-size: 1.3rem; }
     .hero-date-block .d2 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 0.15rem; }
+    /* The map answers a "where is this" question, so it rides with the venue line. */
+    .hero-date-block .d3 { margin-top: 0.45rem; }
+    .hero-date-block .d3 a {
+      color: var(--dark); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .hero-date-block .d3 a:hover { color: var(--red); }
     .hero-btns { margin-top: 2rem; display: flex; gap: 1rem; }
     .btn-red {
       background: var(--red); color: var(--white);
@@ -354,6 +361,18 @@
       color: var(--gold); letter-spacing: 0.02em;
     }
     .act-card:hover .act-link { color: var(--white); }
+
+    /* ── FESTIVAL MAP ── */
+    #map { background: var(--cream); }
+    .map-sub { max-width: 760px; color: #7a5c3a; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .map-frame {
+      display: block; border: 3px solid var(--dark); border-radius: 8px; overflow: hidden;
+      background: var(--white); line-height: 0; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .map-frame:hover, .map-frame:focus-visible { border-color: var(--red); box-shadow: 0 0 0 3px rgba(176,32,32,0.25); }
+    .map-frame img { width: 100%; height: auto; display: block; }
+    .map-actions { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .map-note { font-size: 0.8rem; color: #7a5c3a; }
 
     /* ── TICKETS ── */
     #tickets { background: var(--cream); }
@@ -585,6 +604,7 @@
     <div class="hero-date-block">
       <div class="d1">Saturday, October 10, 2026 &nbsp;&nbsp; Noon – 6:00 PM</div>
       <div class="d2">Gaslight Village · East Grand Rapids, MI</div>
+      <div class="d3"><a href="#map">📍 See the festival map</a></div>
     </div>
     <div class="hero-btns">
       <a href="#tickets" class="btn-red">Pre-Purchase Tickets</a>
@@ -730,6 +750,23 @@
   </div>
 </section>
 
+<!-- FESTIVAL MAP -->
+<section id="map">
+  <div class="section-inner">
+    <div class="s-chip">Getting Around</div>
+    <h2 class="section-h">Festival Map</h2>
+    <div class="underbar"></div>
+    <p class="map-sub">Where to find everything in Gaslight Village: the brewery booths, ticket sales and will call, the volunteer tent, kids games, food trucks and the water stations. Booths are numbered 1 through 31, and the legend on the map says who is pouring at each one.</p>
+    <a class="map-frame" href="images/EGR-Harvest-Festival-Map-2026.pdf" target="_blank" rel="noopener" title="Open the full-size map (PDF)">
+      <img src="images/festival-map.webp" alt="Map of the festival in Gaslight Village showing numbered brewery booths 1 through 31, ticket sales and will call, the volunteer tent, kids games, food trucks, the VIP area and water tents" />
+    </a>
+    <div class="map-actions">
+      <a href="images/EGR-Harvest-Festival-Map-2026.pdf" target="_blank" rel="noopener" class="btn-red">Open Full-Size Map (PDF)</a>
+      <span class="map-note">Opens in a new tab &mdash; print it, or save it to your phone for the day.</span>
+    </div>
+  </div>
+</section>
+
 <!-- FOOD & ENTERTAINMENT -->
 <section id="food">
   <div class="section-inner">
@@ -840,6 +877,7 @@
       <div class="footer-links-list">
         <a href="#about">About</a>
         <a href="#breweries">Breweries</a>
+        <a href="#map">Festival Map</a>
         <a href="#food">Food &amp; Music</a>
         <a href="#tickets">Tickets</a>
         <a href="#sponsors">Sponsors</a>
