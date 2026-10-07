@@ -309,7 +309,10 @@
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
     .gallery-grid img { width: 100%; height: 300px; object-fit: cover; display: block; transition: opacity 0.2s; }
     .gallery-grid img:hover { opacity: 0.88; }
-    .gallery-grid img:last-child { object-position: center top; }
+    /* Tall portrait photo in a short, wide frame: anchored to the top, a wide
+       screen cut both faces off at the chin. 14% keeps the heads in frame at
+       every column width. */
+    .gallery-grid img:last-child { object-position: 50% 14%; }
     #about { padding-bottom: 0; }
 
     /* ── FOOD & ENT ── */
